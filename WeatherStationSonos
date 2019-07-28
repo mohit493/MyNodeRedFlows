@@ -1,0 +1,18 @@
+[
+    {
+        "id": "598d0033.e0a3f",
+        "type": "function",
+        "z": "aea234f3.af3158",
+        "name": "Parsing",
+        "func": "var Details = msg.Object\nvar Weather\n\nWeather.detail = Details.payload.detail\nWeather.RainP = Details.data.currently.precipProbability * 100\n\nreturn Weather;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 460,
+        "y": 460,
+        "wires": [
+            [
+                "1167a290.beeaa5"
+            ]
+        ]
+    }
+]
