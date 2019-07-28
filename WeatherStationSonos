@@ -1,18 +1,101 @@
 [
     {
+        "id": "bc8fdd84.32ab2",
+        "type": "sonospollytts",
+        "z": "aea234f3.af3158",
+        "name": "",
+        "voice": "40",
+        "ssml": false,
+        "dir": "/tmp",
+        "sonosipaddress": "192.168.1.215",
+        "sonosvolume": "40",
+        "sonoshailing": "1",
+        "noderedipaddress": "192.168.1.62",
+        "noderedport": "1880",
+        "config": "e49af2f3.8afbf",
+        "x": 650,
+        "y": 240,
+        "wires": [
+            [
+                "c8f2e88.4dfde98"
+            ]
+        ]
+    },
+    {
+        "id": "b9e9c49d.756348",
+        "type": "inject",
+        "z": "aea234f3.af3158",
+        "name": "Testing",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "28bbf9b.fe54186"
+            ]
+        ]
+    },
+    {
+        "id": "28bbf9b.fe54186",
+        "type": "darksky",
+        "z": "aea234f3.af3158",
+        "darksky": "",
+        "name": "WeatherCalls",
+        "lon": "4.876170",
+        "lat": "52.367260",
+        "date": "",
+        "time": "",
+        "mode": "message",
+        "lang": "en",
+        "units": "si",
+        "x": 390,
+        "y": 340,
+        "wires": [
+            [
+                "598d0033.e0a3f"
+            ]
+        ]
+    },
+    {
         "id": "598d0033.e0a3f",
         "type": "function",
         "z": "aea234f3.af3158",
         "name": "Parsing",
-        "func": "var Details = msg.Object\nvar Weather\n\nWeather.detail = Details.payload.detail\nWeather.RainP = Details.data.currently.precipProbability * 100\n\nreturn Weather;\n\n",
+        "func": "var newMsg1 = { payload: \"Mohiit, it's going to be\" + msg.payload.detail + \" and chances of rain are \" + msg.data.currently.precipProbability*100 + \" Percent\" };\nreturn [newMsg1];",
         "outputs": 1,
         "noerr": 0,
         "x": 460,
         "y": 460,
         "wires": [
             [
-                "1167a290.beeaa5"
+                "bc8fdd84.32ab2"
             ]
         ]
+    },
+    {
+        "id": "c8f2e88.4dfde98",
+        "type": "debug",
+        "z": "aea234f3.af3158",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 820,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "e49af2f3.8afbf",
+        "type": "sonospollytts-config",
+        "z": "aea234f3.af3158",
+        "name": "NodeRed"
     }
 ]
